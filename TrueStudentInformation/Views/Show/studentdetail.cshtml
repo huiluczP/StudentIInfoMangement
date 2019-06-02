@@ -1,0 +1,52 @@
+﻿
+@{
+    ViewBag.Title = "studentdetail";
+}
+@using TrueStudentInformation.ViewModel
+@using TrueStudentInformation.Models
+@model StudentDetail
+
+<div class="page-header">
+    <h2 class="center">学生查询主页面</h2>
+</div>
+<div class="panel panel-default main">
+    <div class="panel-body center">
+        <table class="table">
+            <th>
+                学号
+            </th>
+            <th>
+                姓名
+            </th>
+            <th>
+                年龄
+            </th>
+            <th>
+                性别
+            </th>
+            <th>
+                班级
+            </th>
+            <th>
+                中口径速射
+            </th>
+            <th>
+                瑞云侦察
+            </th>
+            <th>
+                航空炮击
+            </th>
+            <tr>
+                <td>@Model.Stu.Num</td>
+                <td>@Model.Stu.Name</td>
+                <td>@Model.Stu.Age</td>
+                <td>@Model.Stu.Gender</td>
+                <td>@Model.Classroomname</td>
+                <td>@Model.Stu.Firstscore</td>
+                <td>@Model.Stu.Secondscore</td>
+                <td>@Model.Stu.Thirdscore</td>
+            </tr>
+        </table>
+    </div>
+</div>
+
