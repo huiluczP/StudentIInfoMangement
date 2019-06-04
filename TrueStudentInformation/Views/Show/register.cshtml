@@ -1,0 +1,44 @@
+﻿
+@{
+    ViewBag.Title = "register";
+}
+
+<head>
+    <title>register</title>
+</head>
+<body>
+    <div class="page-header">
+        <h3 class="text-center">用户注册</h3>
+    </div>
+    <p style="color:red">@ViewBag.warning</p>
+    <div class="panel panel-default main">
+        <div class="panel-body" align="center">
+            <form action="/Show/insertUser" method="post" onsubmit="return check()">
+                    <input type="text" id="username" name="username" class="form-control" placeholder="用户名" /></br>
+                    <input type="password" id="password" name="password" class="form-control" placeholder="密码" /></br>
+                    <input type="password" id="repassword" name="repassword" class="form-control" placeholder="再次输入密码" /></br>
+                    <button class="btn btn-primary" type="submit">注册</button>
+            </form>
+        </div>
+    </div>
+</body>
+
+<script language="JavaScript" type="text/javascript">
+    function check() {
+        var name = document.getElementById("username");
+        var pwd = document.getElementById("password");
+        var repwd = document.getElementById("repassword");
+        if (name.value == "") {
+            alert("用户名不能为空");
+            return false;
+        }
+        else if (pwd.value == "") {
+            alert("密码不能为空");
+            return false;
+        }
+        else if (pwd.value != repwd.value) {
+            alert("两次输入密码必须相同");
+            return false;
+        }
+    }
+</script>

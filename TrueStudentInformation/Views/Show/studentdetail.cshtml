@@ -11,42 +11,52 @@
 </div>
 <div class="panel panel-default main">
     <div class="panel-body center">
-        <table class="table">
-            <th>
-                学号
-            </th>
-            <th>
-                姓名
-            </th>
-            <th>
-                年龄
-            </th>
-            <th>
-                性别
-            </th>
-            <th>
-                班级
-            </th>
-            <th>
-                中口径速射
-            </th>
-            <th>
-                瑞云侦察
-            </th>
-            <th>
-                航空炮击
-            </th>
-            <tr>
-                <td>@Model.Stu.Num</td>
-                <td>@Model.Stu.Name</td>
-                <td>@Model.Stu.Age</td>
-                <td>@Model.Stu.Gender</td>
-                <td>@Model.Classroomname</td>
-                <td>@Model.Stu.Firstscore</td>
-                <td>@Model.Stu.Secondscore</td>
-                <td>@Model.Stu.Thirdscore</td>
-            </tr>
-        </table>
+        <form action="/Show/changeScore" method="post">
+            <p>@ViewBag.tip</p>
+            <table class="table">
+                <th>
+                    学号
+                </th>
+                <th>
+                    姓名
+                </th>
+                <th>
+                    年龄
+                </th>
+                <th>
+                    性别
+                </th>
+                <tr>
+                    <td><input name="num" type="text" value="@Model.Stu.Num" readonly="readonly" maxlength="6"></td>
+                    <td><input type="text" value="@Model.Stu.Name" readonly="readonly" maxlength="6"></td>
+                    <td><input type="text" value="@Model.Stu.Age" readonly="readonly" maxlength="6"></td>
+                    <td><input type="text" value="@Model.Stu.Gender" readonly="readonly" maxlength="6"></td>
+                </tr>
+            </table>
+
+            <table class="table">
+                <th>
+                    班级
+                </th>
+                <th>
+                    中口径速射
+                </th>
+                <th>
+                    瑞云侦察
+                </th>
+                <th>
+                    航空炮击
+                </th>
+                <tr>
+                    <td><input type="text" value="@Model.Classroomname" readonly="readonly" maxlength="6"></td>
+                    <td><input name="first" type="text" value="@Model.Stu.Firstscore" maxlength="6"></td>
+                    <td><input name="second" type="text" value="@Model.Stu.Secondscore" maxlength="6"></td>
+                    <td><input name="third" type="text" value="@Model.Stu.Thirdscore" maxlength="6"></td>
+                </tr>
+            </table>
+
+            <button class="btn btn-primary" type="submit">修改成绩</button>
+        </form>
     </div>
 </div>
 

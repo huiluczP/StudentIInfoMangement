@@ -19,12 +19,13 @@ namespace TrueStudentInformation.Controllers
             return View();
         }
 
-        //select页面,包括
+        //GET
         public ActionResult select()
         {
             List<Academy> academies=adapter.findAcademy();
             //设置下拉框值
             ViewData["selectitem"] = new SelectList(academies,"Id","Name");
+            ViewBag.username = Session["username"];
             return View(academies);
         }
 
@@ -63,6 +64,73 @@ namespace TrueStudentInformation.Controllers
             TrueStudent stu = new TrueStudent();
             stu.Name = "test";
             return View("test",stu);
+        }
+
+        public ActionResult logincheck(string name,string password)
+        {
+            if (adapter.checkLogin(name, password))
+            {
+                ViewBag.username = name;
+                List<Academy> academies = adapter.findAcademy();
+                ViewData["selectitem"] = new SelectList(academies, "Id", "Name");
+                return View("select",academies);
+            }
+            else
+            {
+                ViewBag.warning = "用户名或密码错误";
+                return View("login");
+            }
+        }
+
+        //GET
+        public ActionResult login()
+        {
+            return View("login");
+        }
+
+        //GET
+        public ActionResult register()
+        {
+            return View("register");
+        }
+
+        public ActionResult insertUser(string username,string password)
+        {
+            bool ready = adapter.insertUser(username,password);
+            if (ready)
+            {
+                ViewBag.username = username;
+                List<Academy> academies = adapter.findAcademy();
+                //设置下拉框值
+                ViewData["selectitem"] = new SelectList(academies, "Id", "Name");
+                return View("select");
+            }
+            else
+            {
+                ViewBag.Warning = "注册失败";
+                return View("register");
+            }
+        }
+
+        //修改成绩
+        public ActionResult changeScore(string num, string first, string second, string third)
+        {
+            if (!adapter.UpdateGrade(num, first, second, third))
+            {
+                ViewBag.warning = "修改错误";
+            }
+            StudentDetail temple = adapter.findStudentByNum(num);
+            ViewBag.num = num;
+            ViewBag.first = first;
+            ViewBag.tip = "更新成功";
+            if (num == null)
+            {
+                ViewBag.temple = "我服了";
+            }
+            if (temple == null)
+                return View("error");
+            else
+                return View("studentdetail", temple);
         }
     }
 }

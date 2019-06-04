@@ -62,5 +62,54 @@ namespace TrueStudentInformation.Dao
             else
                 return null;
         }
+
+        //登录验证
+        public bool checkLogin(string name,string password)
+        {
+            var info = from p in db.Users
+                       where p.Name.Equals(name) && p.Password.Equals(password)
+                       select p;
+            if (info.ToList().Count > 0)
+                return true;
+            else
+                return false;
+        }
+
+        //用户注册
+        public bool insertUser(string name,string password)
+        {
+            User user = new User();
+            user.Name = name;
+            user.Password = password;
+
+            //插入数据库
+            db.Users.Add(user);
+            int count=db.SaveChanges();
+            if (count > 0)
+                return true;
+            else
+                return false;
+        }
+
+        //更新成绩
+        public bool UpdateGrade(string num,string first,string second,string third)
+        {
+            //先查询
+            try
+            {
+                Models.TrueStudent student = db.TrueStudents.Where(a => a.Num == num).FirstOrDefault();
+
+                student.Firstscore = int.Parse(first);
+                student.Secondscore = int.Parse(second);
+                student.Thirdscore = int.Parse(third);
+
+                db.SaveChanges();
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
+            return true;
+        }
     }
 }

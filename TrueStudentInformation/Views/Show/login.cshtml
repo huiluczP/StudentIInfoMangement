@@ -1,0 +1,25 @@
+﻿
+@{
+    ViewBag.Title = "login";
+}
+<head>
+    <title>login</title>
+</head>
+<div class="page-header">
+    <h3 class="text-center">用户登录</h3>
+</div>
+<p style="color:red">@ViewBag.warning</p>
+<div class="panel panel-default main">
+    <div class="panel-body" align="center">
+        <form action="/Show/logincheck" method="post" onsubmit="return check()">
+                <input type="text" id="name" name="name" class="form-control" placeholder="用户名" /></br>
+                <input type="password" id="password" name="password" class="form-control" placeholder="密码" /></br>
+                <button class="btn btn-primary">登录</button>
+        </form>
+
+        <div class="text_right">
+            <a href="/Show/register">注册新用户</a>
+        </div>
+    </div>
+</div>
+
